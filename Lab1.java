@@ -214,7 +214,7 @@ class LightSensorHandler implements SensorEventListener {
     TextView tvMax;
     float max = Integer.MIN_VALUE;
 
-    //we need a constructor
+    //constructor for copying the Textview variables from the main class in order to use it in this class
     public LightSensorHandler(TextView targetTV, TextView targetMax){
         this.tvData = targetTV;
         this.tvMax = targetMax;
@@ -246,7 +246,7 @@ class AccSensorHandler implements SensorEventListener {
     private float yMax = Integer.MIN_VALUE;
     private float zMax = Integer.MIN_VALUE;
 
-    //we need a constructor
+    //constructor for copying the Textview variables from the main class in order to use it in this class
     public AccSensorHandler(TextView targetTV1,TextView targetTV2){
         this.tvData = targetTV1;
         this.tvMax = targetTV2;
@@ -262,7 +262,6 @@ class AccSensorHandler implements SensorEventListener {
             array[i + 1][1] = array[i][1];
             array[i + 1][2] = array[i][2];
             timestamp[i+1]=timestamp[i];
-            //System.arraycopy(array,i,array,i+1,1);
         }
     }
 
@@ -270,8 +269,6 @@ class AccSensorHandler implements SensorEventListener {
 
         if(se.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
-            //Log.d("Test", String.format("First 10 %f, %f, %f, %f, %f, %f, %f, %f, %f, %f", array[0][0],array[1][0],array[2][0],array[3][0],array[4][0],array[5][0],array[6][0],array[7][0],array[8][0],array[9][0]));
-            //Log.d("Test", String.format("Last 10 %f, %f, %f, %f, %f, %f, %f, %f, %f, %f", array[90][0],array[91][0],array[92][0],array[93][0],array[94][0],array[95][0],array[96][0],array[97][0],array[98][0],array[99][0]));
             insert();
             array[0][0] = se.values[0];
             array[0][1] = se.values[1];
@@ -290,7 +287,6 @@ class AccSensorHandler implements SensorEventListener {
                 zMax = se.values[2];
             }
             String dataMax = String.format("( %.2f, %.2f, %.2f)", xMax,yMax,zMax);
-            //String dataMax = String.format("%.2f, %.2f, %.2f,%.2f, %.2f, %.2f, %.2f, %.2f, %.2f, ",array[0][0],array[0][1],array[0][2],array[50][0],array[50][1],array[50][2],array[99][0],array[99][1],array[99][2]);
 
             tvData.setText(data);
             tvMax.setText(dataMax);
@@ -318,7 +314,7 @@ class MagSensorHandler implements SensorEventListener {
     float yMax = Integer.MIN_VALUE;
     float zMax = Integer.MIN_VALUE;
 
-    //we need a constructor
+    //constructor for copying the Textview variables from the main class in order to use it in this class
     public MagSensorHandler(TextView targetTV1,TextView targetTV2){
         this.tvData = targetTV1;
         this.tvMax = targetTV2;
@@ -360,7 +356,7 @@ class RotSensorHandler implements SensorEventListener {
     float yMax = Integer.MIN_VALUE;
     float zMax = Integer.MIN_VALUE;
 
-    //we need a constructor
+    //constructor for copying the Textview variables from the main class in order to use it in this class
     public RotSensorHandler(TextView targetTV1, TextView targetTV2) {
         this.tvData = targetTV1;
         this.tvMax = targetTV2;
@@ -371,7 +367,6 @@ class RotSensorHandler implements SensorEventListener {
 
     public void onSensorChanged(SensorEvent se) {
         if (se.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-            //dataOrganizer run = new dataOrganizer(se.values[0], se.values[1], se.values[2], xMax, yMax, zMax,tvData,tvMax);
             String data = String.format("( %.2f, %.2f, %.2f)", se.values[0],se.values[1],se.values[2]);
             if (xMax < se.values[0]) {
                 xMax = se.values[0];
